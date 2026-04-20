@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick Walker — IT Support & Cybersecurity</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0f14;
+  --surface: #111820;
+  --surface2: #161f28;
+  --border: #1e2d3a;
+  --accent: #4af0c4;
+  --accent2: #ff8c42;
+  --text: #cdd9e0;
+  --muted: #4d6577;
+  --heading: #f0f4f7;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Syne', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: rgba(10,15,20,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(74,240,196,0.05) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(30,45,58,0.4) 39px, rgba(30,45,58,0.4) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(30,45,58,0.4) 39px, rgba(30,45,58,0.4) 40px);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--accent);
+}
+
+h1 {
+  font-family: var(--sans);
+  font-size: clamp(44px, 9vw, 88px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--heading);
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-bio {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+.hero-bio strong { color: var(--text); font-weight: 600; }
+
+.hero-certs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+
+.cert-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 6px 14px;
+  border: 1px solid rgba(74,240,196,0.35);
+  color: var(--accent);
+  background: rgba(74,240,196,0.06);
+  letter-spacing: 0.08em;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 80px 48px;
+  border-top: 1px solid var(--border);
+}
+
+.section-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 800;
+  color: var(--heading);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.section-intro {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 640px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 700px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  position: relative;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent);
+}
+
+.about-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.about-card-title {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 10px;
+}
+
+.about-card p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.skill-group-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.skill-tag.active {
+  color: var(--accent);
+  border-color: rgba(74,240,196,0.3);
+  background: rgba(74,240,196,0.05);
+}
+
+/* ── CERTS ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.cert-card:hover { border-color: rgba(74,240,196,0.3); }
+
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent);
+}
+
+.cert-card.pending::before { background: var(--accent2); }
+.cert-card.pending { opacity: 0.75; }
+
+.cert-issuer {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.cert-name {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.cert-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.cert-status.earned { color: var(--accent); }
+.cert-status.wip { color: var(--accent2); }
+
+/* ── PROJECTS ── */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+  transition: border-color 0.2s;
+}
+
+.project-card:hover { border-color: rgba(74,240,196,0.3); }
+
+.project-title {
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 6px;
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.project-desc strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.project-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.project-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.project-link:hover { opacity: 1; }
+
+.placeholder-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  padding: 20px 24px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  nav .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  section { padding: 60px 24px; }
+}
+
+.contact-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+}
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.contact-value {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--heading);
+  word-break: break-word;
+}
+
+.contact-value a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-value a:hover {
+  color: var(--accent);
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">// nick walker</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">IT Support // Help Desk // Cybersecurity Track</div>
+    <h1>Nick<br><em>Walker</em></h1>
+    <p class="hero-bio">
+      IT support professional in training, based in Las Vegas. I come from a background in
+      <strong>SEO and data analysis</strong> — years of pattern recognition, log-style data, and
+      getting to the bottom of why something broke. Now channeling that into IT: troubleshooting,
+      supporting end users, and building toward a cybersecurity career.
+    </p>
+    <div class="hero-certs">
+      <span class="cert-badge">CompTIA Security+</span>
+      <span class="cert-badge">Splunk Core Certified Power User</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+</header>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">// 01</div>
+    <h2>Skills &amp; Tools</h2>
+    <p class="section-intro">
+      Highlighted items are where I'm strongest. Everything else is actively in progress.
+    </p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">Support &amp; Troubleshooting</div>
+        <div class="skill-tags">
+          <span class="skill-tag active">Ticket Triage</span>
+          <span class="skill-tag active">Documentation</span>
+          <span class="skill-tag active">Root-Cause Analysis</span>
+          <span class="skill-tag">Remote Support</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Operating Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag active">Windows 10 / 11</span>
+          <span class="skill-tag">Windows Server</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Active Directory</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TCP/IP</span>
+          <span class="skill-tag">DNS / DHCP</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Nmap</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Data &amp; Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag active">Splunk / SPL</span>
+          <span class="skill-tag active">Log Analysis</span>
+          <span class="skill-tag active">Pattern Recognition</span>
+          <span class="skill-tag">Regex</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Scripting</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">PowerShell</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Transferable</div>
+        <div class="skill-tags">
+          <span class="skill-tag active">Written Communication</span>
+          <span class="skill-tag active">Self-Directed Learning</span>
+          <span class="skill-tag active">Customer-Facing Work</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-inner">
+    <div class="section-label">// 02</div>
+    <h2>Certifications</h2>
+    <p class="section-intro">
+      Security+ and Splunk Core are already earned. Network+ is the current study target —
+      the most directly useful cert for help desk work.
+    </p>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-issuer">CompTIA</div>
+        <div class="cert-name">Security+</div>
+        <div class="cert-status earned">&#x2713; Earned</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">Splunk</div>
+        <div class="cert-name">Core Certified Power User</div>
+        <div class="cert-status earned">&#x2713; Earned</div>
+      </div>
+
+      <div class="cert-card pending">
+        <div class="cert-issuer">CompTIA</div>
+        <div class="cert-name">Network+</div>
+        <div class="cert-status wip">&#x27F3; In Progress</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">// 03</div>
+    <h2>Projects &amp; Labs</h2>
+    <p class="section-intro">
+      Hands-on work documented end-to-end. The point isn't just the tool — it's showing
+      I can set up an environment, work through a problem, and write it up clearly.
+    </p>
+    <div class="projects-list">
+
+      <div class="project-card">
+        <div>
+          <div class="project-title">Splunk SPL Practice Lab — Dataset Analysis</div>
+          <div class="project-desc">
+            First Splunk home lab, built alongside my Splunk Core Power User cert. Ingested
+            a 1,817-event dataset and wrote four progressively complex SPL searches — using
+            <strong>eval</strong>, <strong>case</strong>, <strong>timechart</strong>, and
+            <strong>stats</strong> to derive new fields, classify events, and spot anomalies.
+            Full writeup with screenshots, command-by-command explanation, and key findings.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Splunk</span>
+            <span class="project-tag">SPL</span>
+            <span class="project-tag">Data Analysis</span>
+            <span class="project-tag">Documentation</span>
+          </div>
+        </div>
+        <a href="https://github.com/NickwalkerSOC/Lab-1" target="_blank" class="project-link">&rarr; View on GitHub</a>
+      </div>
+
+      <div class="placeholder-note">
+        // More labs in progress<br>
+        Active Directory home lab &middot; Windows troubleshooting writeups &middot; Network fundamentals
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">// 04</div>
+    <h2>Contact</h2>
+    <p class="section-intro">
+      Open to help desk, IT support, and desktop support roles in the Las Vegas area or remote.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:gonfreecs.isfree@gmail.com">gonfreecs.isfree@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Las Vegas, NV</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value"><a href="https://github.com/NickwalkerSOC" target="_blank">github.com/NickwalkerSOC</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value"><a href="https://www.linkedin.com/in/nick-walker-bb402539a/" target="_blank">linkedin.com/in/nick-walker-bb402539a</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">Nick Walker // IT Support &amp; Cybersecurity // Las Vegas, NV</div>
+  <div class="footer-text">&copy; 2026</div>
+</footer>
+
+</body>
+</html>
